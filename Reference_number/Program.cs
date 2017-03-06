@@ -13,7 +13,6 @@ namespace Reference_number
             int option = 0;
             bool result = false;
             string uRefNo = "";
-            //string uRefNo = "";
             classRef iRef = new classRef();
             Console.WriteLine("Give option 1 to check refnumber; option 2 to create refnumber; option 3 to create amount of refnumbers!");
             result = int.TryParse(Console.ReadLine(), out option);
@@ -26,11 +25,11 @@ namespace Reference_number
                     uRefNo = Console.ReadLine();
 
                     string uReference = uRefNo;
-                    string uReference_number =  iRef.RefNo(uRefNo,Convert.ToString(option));
+                    string uReference_number = iRef.RefNo(uRefNo, Convert.ToString(option));
 
-                    if (uReference_number != "0" )
+                    if (uReference_number != "0")
                     {
-                        Console.WriteLine("{0} -OK",uRefNo);
+                        Console.WriteLine("{0} -OK", uRefNo);
                         Console.ReadLine();
                     }
                     else
@@ -69,10 +68,23 @@ namespace Reference_number
                     Console.WriteLine("Give amount of referencenumbers:");
                     int amount = int.Parse(Console.ReadLine());
 
+                    List<string> refnos = new List<string>();
+
                     for (int i = 0; i < amount; i++)
                     {
 
+                        refnos.Add(iRef.RefNo(uRefNo,Convert.ToString(option)));
+                        
                     }
+
+                    for (int i = 0; i < refnos.Count; i++)
+                    {
+                        Console.WriteLine("Reference number {0}", refnos[i]);
+                    }
+
+                    Console.ReadLine();
+
+
                 }
             }
             else
@@ -81,6 +93,6 @@ namespace Reference_number
                 Console.ReadLine();
             }
 
-            }
         }
-    } 
+    }
+}

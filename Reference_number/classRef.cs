@@ -18,12 +18,19 @@ namespace Reference_number
             ulong nextzero = 0;
             ulong chkno = 0;
             string iStr = iRef;
+            
 
             //Change type uLong --> String and change it's direction to backwards
             strhlpRef = (String)Convert.ChangeType(hlpRef, typeof(string));
+            
+            if (iType == "1")
+            {
+                strhlpRef = strhlpRef.Substring(0, strhlpRef.Length - 1);
+            }
+
             strhlpRef = stringReverseString3b(strhlpRef);
             j = strhlpRef.Length;
-
+  
             //Count check digit
             for (int i = 0; i < j; i++)
             {
@@ -39,8 +46,8 @@ namespace Reference_number
                 {
                     k = 1;
                 }
-                hlpRef2 = hlpRef2 + k * ulong.Parse(strhlpRef.Substring(i, 1));
 
+                hlpRef2 = hlpRef2 + k * ulong.Parse(strhlpRef.Substring(i, 1));
             }
 
             nextzero = hlpRef2;
@@ -60,14 +67,14 @@ namespace Reference_number
 
             if (iType == "1")
             {
-                ulong hlpchkno = Convert.ToUInt64 (iRef.Substring(iRef.Length - 1));
+                ulong hlpchkno = Convert.ToUInt64(iRef.Substring(iRef.Length - 1));
                 chkno = nextzero - hlpRef2;
                 if (hlpchkno != chkno)
                 {
                     iRef = "0";
                 }
             }
-            else if (iType == "2")
+            else 
             {
                 chkno = nextzero - hlpRef2;
                 iRef = Convert.ToString(chkno);
@@ -87,19 +94,20 @@ namespace Reference_number
                 iRef = stringReverseString3b(iStr);
             }
             return iRef;
-            
-        }                   
 
-    //
-    public string stringReverseString3b(string str)
-    {
-        char[] chars = new char[str.Length];
-        for (int i = 0, j = str.Length - 1; i <= j; i++, j--)
-        {
-            chars[i] = str[j];
-            chars[j] = str[i];
         }
-        return new string(chars);
-    }
-    }
+
+        //
+        public string stringReverseString3b(string str)
+        {
+            char[] chars = new char[str.Length];
+            for (int i = 0, j = str.Length - 1; i <= j; i++, j--)
+            {
+                chars[i] = str[j];
+                chars[j] = str[i];
+            }
+            return new string(chars);
+        }
+    
+     }
 }
